@@ -8,8 +8,14 @@ module.exports = {
     async execute(client, message, args) {
         const voiceChannel = message.member.voice.channel;
  
-        if(!voiceChannel) return message.channel.send("`Ehh, ups:` Kamu harus bergabung ke Voice Channel dahulu.");
-        await voiceChannel.leave();
-        await message.channel.send('Musik berhenti, Miko keluar dari voice channel. :wave:')
+        try {
+            if(!voiceChannel) return message.channel.send("`Ehh, ups:` Kamu harus bergabung ke Voice Channel dahulu.");
+            await voiceChannel.leave();
+            await message.channel.send('Musik berhenti, Miko keluar dari voice channel. :wave:');
+
+        } catch(err) {
+            console.log(err)
+            return;
+        }
     }
 }
