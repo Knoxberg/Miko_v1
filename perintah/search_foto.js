@@ -16,11 +16,20 @@ module.exports = {
 
     async execute(client, message, args, Discord) {
         const image_query = args.join('  ');
-        //Kalau tidak ada keyword yang diberi, bakal keluar tanda error.
-        if(!image_query) return message.channel.send('`Ehh, ups:` Jangan lupa masukkan keyword setelah perintah.');
-        //hasil foto
-        const image_results = await google.scrape(image_query, 1);
 
-        message.channel.send(image_results[0].url);
+
+        try {
+            //Kalau tidak ada keyword yang diberi, bakal keluar tanda error.
+            if(!image_query) return message.channel.send('`Ehh, ups:` Jangan lupa masukkan keyword setelah perintah.');
+            
+            //hasil foto
+            const image_results = await google.scrape(image_query, 1);
+
+            message.channel.send(image_results[0].url);
+
+        } catch(err) {
+            console.log(err);
+            return;
+        }
     }
 }
