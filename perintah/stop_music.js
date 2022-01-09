@@ -11,10 +11,10 @@ module.exports = {
         try {
             if(!voiceChannel) return message.channel.send("`Ehh, ups:` Kamu harus bergabung ke Voice Channel dahulu.");
             await voiceChannel.leave();
-            await message.channel.send('Musik berhenti, Miko keluar dari voice channel. :wave:');
+            await message.channel.send('Musik Miko berhentiin. Bye-bye! :wave:');
 
-        } catch(err) {
-            console.log(err)
+        } catch(error) {
+            console.log(error)
             return;
         }
     }
