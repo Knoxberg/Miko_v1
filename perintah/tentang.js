@@ -17,6 +17,11 @@ module.exports = {
 			{ name: 'Instagram', value: '[@ihsann_nxt](https://instagram.com/ihsann_nxt?utm_medium=copy_link) \n [@zqixz](https://instagram.com/zqixz?utm_medium=copy_link) ', inline: true },
 		
 		)
+		.addFields(
+			{name: 'Versi Bot:', value: '1.0.0'},
+			{name: 'Build:', value: 'dev-beta', inline: true},
+			{name: 'Status Release:', value: 'Closed Beta Testing', inline: true},
+		)
 	    .addField('All Hail to Yae Miko!', 'All Hail to Lady Yae.')
 
         message.channel.send(newEmbed);

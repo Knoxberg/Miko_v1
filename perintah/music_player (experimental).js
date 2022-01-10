@@ -45,7 +45,7 @@ module.exports = {
                 lagu = {title: info_lagu.videoDetails.title, url: info_lagu.videoDetails.video_url}
                 const tmp_judul_lagu = lagu.title;
 
-                //Test
+                //Test Implementasi embed saat pakai Link
                 const videoFinder = async (query) => {
                     const videoResult = await ytSearch(query);
                     return (videoResult.videos.length > 1) ? videoResult.videos[0] : null;
@@ -137,11 +137,17 @@ const video_player = async (guild, lagu) => {
     }
 
     const stream = ytdl(lagu.url, {filter: 'audioonly'});
-    antrian_lagu.connection.play(stream, {seek: 0, volume: 1})
-    .on('finish', () => {
-        antrian_lagu.list_lagu.shift();
-        video_player(guild, antrian_lagu.list_lagu[0]);
-    });
+    try {
+        antrian_lagu.connection.play(stream, {seek: 0, volume: 0.8})
+        .on('finish', () => {
+            antrian_lagu.list_lagu.shift();
+            video_player(guild, antrian_lagu.list_lagu[0]);
+        });
+
+    } catch (error){
+        console.log(error);
+    }
+    
 
     //Pesan Embed yang isinya Judul, Durasi, Views, sama Thumbnail video
     const infoLagu = new Discord.MessageEmbed()
@@ -180,8 +186,9 @@ const stop_lagu = (message, antrian_server) => {
     try {
         antrian_server.list_lagu = [];
         antrian_server.connection.dispatcher.end();
-    }
-    catch (error){
+
+    } catch (error){
         voiceChannel.leave();
+        console.log(error);
     }
 }
