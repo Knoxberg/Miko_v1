@@ -5,7 +5,7 @@ module.exports = {
     name: 'leave',
     description: 'Stop pemutaran lagu dan keluar dari voice channel',
 
-    async execute(client, message, args) {
+    async execute(client, message, cmd, args) {
         const voiceChannel = message.member.voice.channel;
  
         try {

@@ -14,7 +14,7 @@ module.exports = {
     name:'image',
     description:'Kirim foto sesuai keyword yang diberikan',
 
-    async execute(client, message, args, Discord) {
+    async execute(client, message, args, cmd, Discord) {
         const image_query = args.join('  ');
 
 

@@ -8,7 +8,7 @@ module.exports = {
     name : 'play(disabled, ganti yang baru)',
     description : 'Untuk play audio dari YT',
 
-    async execute(client, message, args, Discord) {
+    async execute(client, message, args, cmd, Discord) {
         const voiceChannel = message.member.voice.channel;
 
         //Kalau orang yang ngetik perintah gak ada di voice channel bakal keluarin pesan error.
