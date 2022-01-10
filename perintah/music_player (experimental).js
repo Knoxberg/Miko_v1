@@ -42,7 +42,16 @@ module.exports = {
             //Kalau URL
             if(ytdl.validateURL(args[0])){
                 const info_lagu = await ytdl.getInfo(args[0]);
-                lagu = {title: info_lagu.videoDetails.title, url: info_lagu.videoDetails.video_url, duration: info_lagu.videoDetails.lengthSeconds, views: info_lagu.videoDetails.viewCount, thumbnail: info_lagu.videoDetails.thumbnails}
+                lagu = {title: info_lagu.videoDetails.title, url: info_lagu.videoDetails.video_url}
+                const tmp_judul_lagu = lagu.title;
+
+                //Test
+                const videoFinder = async (query) => {
+                    const videoResult = await ytSearch(query);
+                    return (videoResult.videos.length > 1) ? videoResult.videos[0] : null;
+                }
+                const video = await videoFinder(tmp_judul_lagu);
+                lagu = {title: video.title, url: video.url, duration: video.duration, views: video.views, thumbnail: video.thumbnail}
 
             } else{
                 //Kalau bukan URL, kita search pakai keyword
@@ -89,7 +98,7 @@ module.exports = {
                 }
 
             } 
-            
+
             //Kalau sudah ada antrian yang dibuat
             else{
                 antrian_server.list_lagu.push(lagu);
@@ -166,6 +175,7 @@ const skip_lagu = (message, antrian_server) => {
 const stop_lagu = (message, antrian_server) => {
     //Kalau pengirim perintah tidak join di Voice Channel maka kirim pesan error
     if(!message.member.voice.channel) return message.channel.send("`Ohh tidak:` Kamu harus bergabung ke `\ Voice Channel \` dahulu.");
+    message.channel.send('Musik Miko berhentiin. Bye-bye! :wave:');
     
     //Kosongin daftar antrian, karena daftar antrian kosong maka otomatis leave Voice Channel
     antrian_server.list_lagu = [];
