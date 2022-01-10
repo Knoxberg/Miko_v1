@@ -42,7 +42,7 @@ module.exports = {
             //Kalau URL
             if(ytdl.validateURL(args[0])){
                 const info_lagu = await ytdl.getInfo(args[0]);
-                lagu = {title: info_lagu.videoDetails.title, url: info_lagu.videoDetails.video_url, duration: info_lagu.videoDetails.lengthSeconds, views: info_lagu.videoDetails.viewCount, thumbnail: info_lagu.videoDetails.thumbnail}
+                lagu = {title: info_lagu.videoDetails.title, url: info_lagu.videoDetails.video_url, duration: info_lagu.videoDetails.lengthSeconds, views: info_lagu.videoDetails.viewCount, thumbnail: info_lagu.videoDetails.thumbnails}
 
             } else{
                 //Kalau bukan URL, kita search pakai keyword
