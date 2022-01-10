@@ -6,7 +6,7 @@ module.exports = {
     aliases: ['bantuan'],
     description: 'Test menu help baru pakai fitur embed.',
 
-    execute(client, message, args, Discord) {
+    execute(client, message, args, cmd, Discord) {
         const newEmbed = new Discord.MessageEmbed()
         .setColor('#FFC0CB')
         .setTitle('Butuh Bantuan?  >w< ')

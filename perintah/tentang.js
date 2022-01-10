@@ -6,7 +6,7 @@ module.exports = {
 	aliases: ['info', 'botinfo'],
     description: 'Perintah untuk menampilkan (about page)',
 
-    execute(client, message, args, Discord) {
+    execute(client, message, args, cmd, Discord) {
         const newEmbed = new Discord.MessageEmbed()
         .setColor('#FFC0CB')
 	    .setTitle('Tentang Mikoo :fox:')
