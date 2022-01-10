@@ -10,7 +10,7 @@ module.exports = {
         const newEmbed = new Discord.MessageEmbed()
         .setColor('#FFC0CB')
 	    .setTitle('Tentang Mikoo :fox:')
-	    .setDescription('Aku adalah bot discord yang dikembangkan secara pribadi untuk penggunaan non-komersial.')
+	    .setDescription('Miko adalah bot discord yang dikembangkan secara pribadi untuk penggunaan non-komersial.')
 	    .addFields(
 			{ name: 'Dibuat dengan  :heart_decoration:', value: '\u200B' },
 			{ name: 'Tim Development', value: 'Knoxbergs \n Zqixz', inline: true },

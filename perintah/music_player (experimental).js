@@ -113,7 +113,6 @@ module.exports = {
                     {name: 'Durasi :clock3: :', value: `${lagu.duration}`},
                     {name: 'Views :eyes:  :', value: `${lagu.views}`}
                 )
-
                 return message.channel.send(infoLagu);
             }
         }
@@ -176,8 +175,13 @@ const stop_lagu = (message, antrian_server) => {
     //Kalau pengirim perintah tidak join di Voice Channel maka kirim pesan error
     if(!message.member.voice.channel) return message.channel.send("`Ohh tidak:` Kamu harus bergabung ke `\ Voice Channel \` dahulu.");
     message.channel.send('Musik Miko berhentiin. Bye-bye! :wave:');
-    
+
     //Kosongin daftar antrian, karena daftar antrian kosong maka otomatis leave Voice Channel
-    antrian_server.list_lagu = [];
-    antrian_server.connection.dispatcher.end();
+    try {
+        antrian_server.list_lagu = [];
+        antrian_server.connection.dispatcher.end();
+    }
+    catch (error){
+        voiceChannel.leave();
+    }
 }
