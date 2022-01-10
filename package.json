@@ -9,8 +9,7 @@
   "author": "Knoxberg ft. Zqixz",
   "license": "ISC",
   "engines": {
-    "node": "17.1.0",
-    "npm": "8.1.2"
+    "node": "16.x"
   },
   "dependencies": {
     "@discordjs/opus": "^0.7.0",
