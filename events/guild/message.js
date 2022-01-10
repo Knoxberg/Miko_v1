@@ -13,8 +13,13 @@ module.exports = (Discord, client, message) => {
     const args = message.content.slice(prefix.length).split(/ +/);
     const cmd = args.shift().toLowerCase();
 
-    const command = client.commands.get(cmd);
+    const command = client.commands.get(cmd) || client.commands.find(alias => alias.aliases && alias.aliases.includes(cmd));
 
     //jalanin perintahnya
-    if(command)command.execute(client, message, args, Discord);
+    //if(command)command.execute(client, message, args, Discord);
+    try {
+        command.execute(client, message, args, cmd, Discord);
+    } catch(error) {
+        message.reply(":mega: Terjadi error nih >~< \n Apa perintah sudah benar?");
+    }
 }
