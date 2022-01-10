@@ -3,6 +3,7 @@ const client = new Discord.Client();
 
 module.exports = {
     name: 'help',
+    aliases: ['bantuan'],
     description: 'Test menu help baru pakai fitur embed.',
 
     execute(client, message, args, Discord) {

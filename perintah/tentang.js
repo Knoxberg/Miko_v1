@@ -3,6 +3,7 @@ const client = new Discord.Client();
 
 module.exports = {
     name: 'tentang',
+	aliases: ['info', 'botinfo'],
     description: 'Perintah untuk menampilkan (about page)',
 
     execute(client, message, args, Discord) {
