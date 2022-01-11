@@ -29,7 +29,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/github_username/repo_name">
+  <a href="https://github.com/Knoxberg/Mikoo">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -38,14 +38,14 @@
   <p align="center">
     project_description
     <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/Knoxberg/Mikoo"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
+    <a href="https://github.com/Knoxberg/Mikoo">View Demo</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
+    <a href="https://github.com/Knoxberg/Mikoo/issues">Report Bug</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
+    <a href="https://github.com/Knoxberg/Mikoo/issues">Request Feature</a>
   </p>
 </div>
 
@@ -209,16 +209,16 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo_name/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo_name/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo_name/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/Knoxberg/Mikoo.svg?style=for-the-badge
+[contributors-url]: https://github.com/Knoxberg/Mikoo/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Knoxberg/Mikoo.svg?style=for-the-badge
+[forks-url]: https://github.com/Knoxberg/Mikoo/network/members
+[stars-shield]: https://img.shields.io/github/stars/Knoxberg/Mikoo.svg?style=for-the-badge
+[stars-url]: https://github.com/Knoxberg/Mikoo/stargazers
+[issues-shield]: https://img.shields.io/github/issues/Knoxberg/Mikoo.svg?style=for-the-badge
+[issues-url]: https://github.com/Knoxberg/Mikoo/issues
+[license-shield]: https://img.shields.io/github/license/Knoxberg/Mikoo.svg?style=for-the-badge
+[license-url]: https://github.com/Knoxberg/Mikoo/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
 [product-screenshot]: images/screenshot.png
