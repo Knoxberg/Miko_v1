@@ -13,8 +13,8 @@ module.exports = {
         .setDescription('Apa ada yang bisa Miko bantu?.  Miko pikir ini bisa bantu kamu!')
         .addFields(
             { name: "Perintah Umum :fox:", value : "`?help` = Menampilkan menu bantuan. \n `?tentang` = Menampilkan informasi tentang Miko. \n `?hai` = Haloo!"},
-            { name: 'Fitur Lain:', value: '`?image (Keyword)` = Menampilkan foto sesuai dengan keyword kamu!' },
-            { name: 'Music Player :notes:', value: '`?play (Keyword / Link YT)` = Memutar lagu pilihanmu dari YouTube! \n `?leave` = Menghentikan lagu yang diputar, dan keluar dari Voice Channel.'}
+            { name: 'Fitur Lain:', value: '`?image (Keyword)` = Mencari foto sesuai dengan keyword kamu!' },
+            { name: 'Music Player :notes:', value: '`?play (Keyword / Link YT)` = Memutar lagu pilihanmu dari YouTube! \n `?skip` = Skip ke lagu berikutnya di antrian. \n `?stop` = Menghentikan pemutaran lagu.'}
 
         )
         message.channel.send(newEmbed);
