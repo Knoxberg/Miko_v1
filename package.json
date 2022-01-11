@@ -8,9 +8,7 @@
   },
   "author": "Knoxberg ft. Zqixz",
   "license": "ISC",
-  "engines": {
-    "node": "17.1.0"
-  },
+ 
   "dependencies": {
     "@discordjs/opus": "^0.7.0",
     "@discordjs/voice": "^0.7.5",
