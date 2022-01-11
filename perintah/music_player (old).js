@@ -6,7 +6,7 @@ const ytSearch = require('yt-search');
 const ffmpeg = require('ffmpeg-static');
 
 module.exports = {
-    name : 'play',
+    name : 'play (disabled)',
     description : 'Untuk play audio dari YT',
 
     async execute(client, message, args, cmd, Discord) {
