@@ -19,8 +19,8 @@ module.exports = {
 		)
 		.addFields(
 			{name: 'Versi Bot:', value: '1.0.0'},
-			{name: 'Build:', value: 'dev-beta', inline: true},
-			{name: 'Status Release:', value: 'Closed Beta Testing', inline: true},
+			{name: 'Build:', value: 'beta', inline: true},
+			{name: 'Status Release:', value: 'Open Beta Testing', inline: true},
 		)
 	    .addField('All Hail to Yae Miko!', 'All Hail to Lady Yae.')
 

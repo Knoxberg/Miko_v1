@@ -27,13 +27,13 @@ module.exports = {
         const antrian_server = antrian.get(message.guild.id);
 
         //Listen buat perintah PLAY
-        if(cmd === 'play-exp'){
+        if(cmd === 'play'){
 
            //Kalau tidak ada keyword yang dikasih bakal keluarin pesan bantuan.
             const playHelp = new Discord.MessageEmbed()
             .setColor('#FFC0CB')
 	        .setTitle('Waah... Miko bantu kamu yah!')
-	        .setDescription('`?play <judul lagu>` = Miko putar hasil pencarian teratas di Youtube. \n `?play <link Youtube>` = Miko putar link itu buat kamu! \n-----------------------------------------------------------------\n Pastikan kamu sudah ada didalam `Voice Channel` juga ya! :wink:')
+	        .setDescription('`?play <judul lagu>` = Miko putar hasil pencarian teratas di Youtube. \n `?play <link Youtube>` = Miko putar link itu buat kamu! \n-----------------------------------------\n Pastikan kamu sudah ada didalam `Voice Channel` juga ya! :wink:')
             if(!args.length) return message.channel.send(playHelp);
 
             //List kosong lagu
@@ -93,7 +93,7 @@ module.exports = {
                     antrian.delete(message.guild.id);
 
                     //Kirim pesan kalau gagal tersambung
-                    message.channel.send('Wah, ada error. Miko gagal tersambung nih :crying_cat_face:');
+                    message.channel.send('Wah, ada error. Miko gagal tersambung nih, Coba lagi yah :crying_cat_face:');
                     throw error;
                 }
 
@@ -136,9 +136,16 @@ const video_player = async (guild, lagu) => {
         return;
     }
 
-    const stream = ytdl(lagu.url, {filter: 'audioonly'});
+    //highWaterMark: 1 << 25 //Buffer 32Mb
+    //quality: 'highestaudio',
+    const stream = ytdl(lagu.url, {
+        filter: 'audioonly',
+        dlChunkSize: 0,
+        highWaterMark: 1 << 25,
+    });
+
     try {
-        antrian_lagu.connection.play(stream, {seek: 0, volume: 0.8})
+        antrian_lagu.connection.play(stream, {seek: 0, volume: 1})
         .on('finish', () => {
             antrian_lagu.list_lagu.shift();
             video_player(guild, antrian_lagu.list_lagu[0]);
@@ -146,6 +153,7 @@ const video_player = async (guild, lagu) => {
 
     } catch (error){
         console.log(error);
+        throw error;
     }
     
 
@@ -180,15 +188,14 @@ const skip_lagu = (message, antrian_server) => {
 const stop_lagu = (message, antrian_server) => {
     //Kalau pengirim perintah tidak join di Voice Channel maka kirim pesan error
     if(!message.member.voice.channel) return message.channel.send("`Ohh tidak:` Kamu harus bergabung ke `\ Voice Channel \` dahulu.");
-    message.channel.send('Musik Miko berhentiin. Bye-bye! :wave:');
 
     //Kosongin daftar antrian, karena daftar antrian kosong maka otomatis leave Voice Channel
     try {
+        message.channel.send('Musik Miko hentikan. Bye-bye! :wave:');
         antrian_server.list_lagu = [];
         antrian_server.connection.dispatcher.end();
 
     } catch (error){
-        voiceChannel.leave();
         console.log(error);
     }
 }
