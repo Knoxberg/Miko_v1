@@ -23,7 +23,7 @@ module.exports = {
             if(!image_query) return message.channel.send('`Ehh, ups:` Jangan lupa masukkan keyword setelah perintah.');
             message.channel.send("Miko sedang mencari...")
             
-            //hasil foto
+            //Hasil foto
             const image_results = await google.scrape(image_query, 1);
 
             message.channel.send(image_results[0].url);
