@@ -10,7 +10,7 @@ const antrian = new Map();
 
 module.exports = {
     name : 'play',
-    aliases: ['skip', 'stop'],
+    aliases: ['skip', 'next', 'stop', 'queue', 'antrian', 'antri'],
     description : 'Untuk play audio dari YT dengan fitur Antrian (Queue), Skip, dan Stop',
 
     async execute(client, message, args, cmd, Discord) {
@@ -21,8 +21,8 @@ module.exports = {
 
         //Untuk cek izin di server
         const permissions = voiceChannel.permissionsFor(message.client.user);
-        if(!permissions.has('CONNECT')) return message.channel.send("`Ohh tidak:` Kamu harus memiliki izin untuk `\CONNECT\` kedalam voice channel.");
-        if(!permissions.has('SPEAK')) return message.channel.send("`Ohh tidak:` Kamu harus memiliki izin untuk `\SPEAK\` kedalam voice channel.");
+        if(!permissions.has('CONNECT')) return message.channel.send("`Ohh tidak:` Kamu harus memiliki izin untuk `\ CONNECT \` kedalam voice channel.");
+        if(!permissions.has('SPEAK')) return message.channel.send("`Ohh tidak:` Kamu harus memiliki izin untuk `\ SPEAK \` kedalam voice channel.");
 
         const antrian_server = antrian.get(message.guild.id);
 
@@ -87,6 +87,7 @@ module.exports = {
                     const connection = await voiceChannel.join();
                     konstruktor_antrian.connection = connection;
                     video_player(message.guild, konstruktor_antrian.list_lagu[0]);
+                    
 
                 } catch (error){
                     //Kalau ada error hapus semua antrian
@@ -94,7 +95,8 @@ module.exports = {
 
                     //Kirim pesan kalau gagal tersambung
                     message.channel.send('Wah, ada error. Miko gagal tersambung nih, Coba lagi yah :crying_cat_face:');
-                    throw error;
+                    console.log(error);
+                    //throw error;
                 }
 
             } 
@@ -107,11 +109,12 @@ module.exports = {
                 const infoLagu = new Discord.MessageEmbed()
                 .setColor('#FFC0CB')
                 .setTitle(':white_check_mark: Okee, Miko tambahin ke antrian!')
-                .setImage(`${lagu.thumbnail}`)
+                .setThumbnail(`${lagu.thumbnail}`)
                 .addFields(
                     {name: 'Judul           :', value: `${lagu.title}`},
+                    {name: 'URL             :', value: `${lagu.url}`},
                     {name: 'Durasi :clock3: :', value: `${lagu.duration}`},
-                    {name: 'Views :eyes:  :', value: `${lagu.views}`}
+                    {name: 'Views :eyes:  :', value: `${lagu.views}`, inline: true}
                 )
                 return message.channel.send(infoLagu);
             }
@@ -120,8 +123,20 @@ module.exports = {
         //Listen buat perintah SKIP
         else if(cmd === 'skip') skip_lagu(message, antrian_server);
 
+        //Listen buat perintah NEXT
+        else if(cmd === 'next') skip_lagu(message, antrian_server);
+
         //Listen buat perintah STOP
         else if(cmd === 'stop') stop_lagu(message, antrian_server);
+
+        //Listen buat perintah QUEUE
+        else if(cmd === 'queue') liat_daftar_antrian(message, Discord, antrian_server)
+
+        //Listen buat perintah ANTRIAN
+        else if(cmd === 'antrian') liat_daftar_antrian(message, Discord, antrian_server)
+
+        //Listen buat perintah ANTRI
+        else if(cmd === 'antri') liat_daftar_antrian(message, Discord, antrian_server)
     }
 }
 
@@ -164,8 +179,9 @@ const video_player = async (guild, lagu) => {
     .setImage(`${lagu.thumbnail}`)
     .addFields(
         {name: 'Judul           :', value: `${lagu.title}`},
+        {name: 'URL             :', value: `${lagu.url}`},
         {name: 'Durasi :clock3: :', value: `${lagu.duration}`},
-        {name: 'Views :eyes:  :', value: `${lagu.views}`}
+        {name: 'Views :eyes:  :', value: `${lagu.views}`, inline: true}
     )
     
     await antrian_lagu.text_channel.send(infoLagu);
@@ -197,5 +213,52 @@ const stop_lagu = (message, antrian_server) => {
 
     } catch (error){
         console.log(error);
+    }
+}
+
+const liat_daftar_antrian = async (message, Discord, antrian_server) => {
+    if (antrian_server){
+        const embeds = konstruktorPesanEmbedded(antrian_server.list_lagu)
+    }
+        
+    function konstruktorPesanEmbedded(){
+        //Array baru dengan value dari "title" antrian lagu
+        var iniBuffer = [];
+
+        try {
+            for(var i=1; i<antrian_server.list_lagu.length; i++){
+                //Formating menjadi => 1. [Judul lagu]
+                iniBuffer.push(`${i}. ${antrian_server.list_lagu[i].title}`);
+            }
+
+            //Kalau ada antriannya bakal dikirim pakai ini
+            if (iniBuffer.length > 0) {
+                const infoAntrian = new Discord.MessageEmbed()
+                .setColor('#FFC0CB')
+                .setTitle('Ini daftar antrian Miko! :page_facing_up:')
+                .setDescription(' ')
+                .addFields(
+                    {name: 'Sekarang Memutar :dvd::', value: `${antrian_server.list_lagu[0].title}`},
+                    {name: 'Antrian :cd::', value: iniBuffer},
+                )
+                return message.channel.send(infoAntrian);
+            } 
+            //Kalau ga ada antrian kirim yang ini (supaya tidak error empty message)
+            else {
+                const infoAntrian = new Discord.MessageEmbed()
+                .setColor('#FFC0CB')
+                .setTitle('Ini daftar antrian Miko! :page_facing_up:')
+                .setDescription(' ')
+                .addFields(
+                    {name: 'Sekarang Memutar :dvd::', value: `${antrian_server.list_lagu[0].title}`},
+                    {name: 'Antrian :cd::', value: "`Antrian kosong, Tambahin lagu lagi yuk!`"},
+                )
+                return message.channel.send(infoAntrian);
+            }
+
+        } catch (error) {
+            console.log(error)
+            message.channel.send('Wah, ada error. Miko gagal susun daftar antrian nih :crying_cat_face:')
+        }
     }
 }
