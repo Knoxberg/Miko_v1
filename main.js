@@ -1,19 +1,22 @@
-const Discord = require("discord.js");
-const client = new Discord.Client();
+const { ShardingManager } = require("discord.js");
 require('dotenv').config();
 
-client.commands = new Discord.Collection();
-client.events = new Discord.Collection();
 
-//Deklarasi nama file handlernya. JANGAN ASAL GANTI
-['command_handler', 'event_handler'].forEach(handler => {
-  require(`./handlers/${handler}`)(client, Discord);
-})
+const managerShard = new ShardingManager("./bot.js", {
+    // Info lebih tentang ShardingManager Discord.js:
+    // https://discord.js.org/#/docs/main/stable/class/ShardingManager
 
-//Kalau sudah berhasil login bakal print nama sama tag bot di terminal
-client.on("ready", () => {
-  console.log(`Login sebagai ${client.user.tag}`)
+    //Atur jumlah shard ("auto" buat setel otomatis)
+    totalShards: "auto",
+
+    //Token login
+    token: process.env.TOKEN_LOGIN_BOT
 });
 
-// Login bot discordnya (Token disimpan secara aman di file .env)
-client.login(process.env.TOKEN_LOGIN_BOT);
+// Waktu shard dibuat, kirim notif id shard di terminal
+managerShard.on("shardCreate", (shard) => {
+    console.log(`Shard baru dibuat. ID: ${shard.id}`)
+});
+
+// summon shard nya mwahhahwhhawhah
+managerShard.spawn();
