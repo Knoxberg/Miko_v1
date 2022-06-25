@@ -1,4 +1,5 @@
 --------------- LISENCE BEGIN ---------------
+ 
 Copyright (C) 2021-2022, Ihsan Jasir or also known as Knoxbergs - All Rights Reserved
 
 Unauthorized copying and/or editing of this file, via any medium is strictly prohibited.
@@ -32,4 +33,5 @@ YOU (as an individual or community or corporate or non-profit organization) OBTA
 THIS SOFTWARE LEGALLY.
 
 Written by Ihsan Jasir, June 2022
+ 
 --------------- LISENCE END ---------------
