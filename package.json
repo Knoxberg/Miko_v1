@@ -1,5 +1,5 @@
 {
-  "name": "belajar-dc-bot",
+  "name": "miko-dc-bot",
   "version": "1.0.0",
   "description": "Belajar buat bot discord.",
   "main": "main.js",
@@ -7,9 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Knoxberg ft. Zqixz",
-  "license": "ISC",
+  "license": "Closed-source. See LICENSE.md for details.",
   "dependencies": {
-    "@discordjs/opus": "^0.8.0",
+    "@discordjs/opus": "^0.7.0",
     "@discordjs/voice": "^0.7.5",
     "discord.js": "^12.5.3",
     "dotenv": "^10.0.0",
